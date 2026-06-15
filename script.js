@@ -39,13 +39,10 @@ let noClickCount  = 0;
 document.addEventListener('DOMContentLoaded', () => {
   applyConfig();
 
-  // Spawn petals on intro
   spawnPetals('petals-container', 7);
 
-  // Set up music
   setupMusic();
 
-  // Envelope click
   const envelope = document.getElementById('envelope');
   if (envelope) envelope.addEventListener('click', openEnvelope);
 });
@@ -144,7 +141,6 @@ function openEnvelope() {
   if (wrapper) wrapper.classList.remove('bounce');
   if (tapHint) tapHint.style.opacity = '0';
 
-  // Crack seal
   if (seal) {
     seal.classList.add('cracking');
     seal.addEventListener('animationend', () => {
@@ -152,15 +148,13 @@ function openEnvelope() {
     }, { once: true });
   }
 
-  // Open flap
   setTimeout(() => envelope.classList.add('open'), 420);
 
-  // Go to letter
   setTimeout(() => {
     transitionTo('letter-screen', () => {
       currentScreen = 'letter';
       spawnPetals('petals-container-3', 5);
-      // Scroll to top
+
       document.getElementById('letter-screen').scrollTop = 0;
       setTimeout(startLetterTypewriter, 500);
     });
